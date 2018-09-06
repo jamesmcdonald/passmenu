@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A2037022141812000B87E98 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AC9964B213D1A7D0003BEA6 /* Passmenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passmenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC9964E213D1A7D0003BEA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AC99650213D1A7D0003BEA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		1AC99642213D1A7D0003BEA6 = {
 			isa = PBXGroup;
 			children = (
+				1A2037022141812000B87E98 /* README.md */,
 				1AC9964D213D1A7D0003BEA6 /* Passmenu */,
 				1AC9964C213D1A7D0003BEA6 /* Products */,
 			);
