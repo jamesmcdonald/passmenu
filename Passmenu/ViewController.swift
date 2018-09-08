@@ -82,12 +82,16 @@ class ViewController: NSViewController {
         }
     }
     
-    func notify(_ pass: String) {
-        let notification = NSUserNotification()
-        notification.title = "Password Copied"
-        notification.informativeText = "Password entry \"\(pass)\" copied to clipboard. It will be cleared in \(clearInterval) seconds."
-        //notification.soundName  = NSUserNotificationDefaultSoundName
+    func notify(title: String, message: String) {
+        let notification = NSUserNotification();
+        notification.title = title
+        notification.informativeText = message
         NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func passNotify(_ pass: String) {
+        notify(title: "Password Copied",
+               message: "Password entry \"\(pass)\" copied to clipboard. It will be cleared in \(clearInterval) seconds.")
     }
 
     @IBAction func doubleClick(_ sender: NSTableView) {
@@ -99,19 +103,33 @@ class ViewController: NSViewController {
         delegate.hideSearch(nil)
         
         let entry = results[sender.selectedRow]
-        let pw = pass.getPass(entry)
+        do {
+            let pw = try pass.getPass(entry)
         
-        // Cancel pending timer
-        if timer != nil {
-            timer!.invalidate()
-        }
-        let pasteboard = NSPasteboard.general
-        pasteboard.clearContents()
-        pasteboard.setString(pw, forType: .string)
-        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(clearInterval), repeats: false)  { (timer) in
+            // Cancel pending timer
+            if timer != nil {
+                timer!.invalidate()
+            }
+            let pasteboard = NSPasteboard.general
             pasteboard.clearContents()
+            pasteboard.setString(pw, forType: .string)
+            timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(clearInterval), repeats: false)  { (timer) in
+                pasteboard.clearContents()
+            }
+            passNotify(results[sender.selectedRow])
+        } catch GetPassError.ExecFailed(let code, let error) {
+            notify(title: "ERROR: Failed to retrieve password",
+                   message: "Error response: \"\(error)\", Error code: \(code)")
+        } catch GetPassError.NoBinary(let path) {
+            notify(title: "ERROR: Can't find pass",
+                   message: "Can't find an executable at configured path \"\(path)\"")
+        } catch GetPassError.ParseFailed {
+            notify(title: "ERROR: Couldn't parse response from pass",
+                   message: "I ran pass OK, but what it sent me didn't look like UTF-8")
+        } catch {
+            notify(title: "Unexpected Error",
+                   message: "Something crazy and unanticipated happened. Well done!")
         }
-        notify(results[sender.selectedRow])
     }
 }
 
