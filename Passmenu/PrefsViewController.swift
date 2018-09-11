@@ -18,13 +18,19 @@ class PrefsViewController: NSViewController {
     @IBOutlet weak var pathField: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        passField.stringValue = passPath
-        pathField.stringValue = path
     }
-   
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        let ud = UserDefaults.standard
+        passField.stringValue = ud.string(forKey: "passPath")!
+        pathField.stringValue = ud.string(forKey: "path")!
+    }
+    
     @IBAction func okClicked(_ sender: Any) {
-        self.passPath = passField.stringValue
-        self.path = pathField.stringValue
+        let ud = UserDefaults.standard
+        ud.set(passField.stringValue, forKey: "passPath")
+        ud.set(pathField.stringValue, forKey: "path")
         view.window?.performClose(sender)
     }
     @IBAction func cancelClicked(_ sender: Any) {
