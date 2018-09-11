@@ -810,7 +810,7 @@
                 <windowController storyboardIdentifier="PrefsWindowController" id="OkP-Rq-of2" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="K8F-zb-GgL">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="272" height="272"/>
+                        <rect key="contentRect" x="196" y="240" width="422" height="272"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
                             <outlet property="delegate" destination="OkP-Rq-of2" id="Hdf-qj-UD9"/>
@@ -829,11 +829,11 @@
             <objects>
                 <viewController id="yid-Ib-4gC" customClass="PrefsViewController" customModule="Passmenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="sVJ-32-87x">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="422" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cln-im-OnW">
-                                <rect key="frame" x="18" y="233" width="160" height="17"/>
+                                <rect key="frame" x="18" y="178" width="160" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Location of &quot;pass&quot; binary:" id="bzd-SZ-AJl">
                                     <font key="font" metaFont="system"/>
@@ -852,11 +852,11 @@ Gw
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="cancelClicked:" target="yid-Ib-4gC" id="hk3-sJ-PHE"/>
+                                    <action selector="cancelClicked:" target="yid-Ib-4gC" id="jRP-qA-Q8m"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oiI-cb-b3n">
-                                <rect key="frame" x="20" y="203" width="195" height="22"/>
+                                <rect key="frame" x="20" y="148" width="312" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jCE-I5-rkl">
                                     <font key="font" size="13" name="Monaco"/>
@@ -865,7 +865,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZo-TC-VkF">
-                                <rect key="frame" x="20" y="178" width="81" height="17"/>
+                                <rect key="frame" x="18" y="123" width="81" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path setting:" id="DiF-ps-TUQ">
                                     <font key="font" metaFont="system"/>
@@ -873,36 +873,81 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kX6-O3-Cq6">
-                                <rect key="frame" x="22" y="148" width="193" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tEB-2c-lRn">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QfZ-tK-VZD">
-                                <rect key="frame" x="217" y="141" width="39" height="32"/>
+                                <rect key="frame" x="369" y="86" width="39" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QpN-Gy-pxk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="pathResetClicked:" target="yid-Ib-4gC" id="uj5-mI-xm3"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xm-NB-x91">
+                                <rect key="frame" x="369" y="141" width="39" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Yl-z0-8Fk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="passResetClicked:" target="yid-Ib-4gC" id="y6t-Uh-rie"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQX-nX-8A9">
-                                <rect key="frame" x="217" y="197" width="39" height="32"/>
+                                <rect key="frame" x="334" y="141" width="39" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSFolder" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Ju-91-IIL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
-                                        <action selector="passButtonClicked:" target="yid-Ib-4gC" id="IK2-Nc-naz"/>
+                                        <action selector="passOpenClicked:" target="yid-Ib-4gC" id="IK2-Nc-naz"/>
                                     </connections>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-WW-7cA">
+                                <rect key="frame" x="18" y="233" width="172" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Location of password store:" id="hUO-Em-aQH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02W-Cc-LTx">
+                                <rect key="frame" x="20" y="203" width="312" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="8dL-x7-34c">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sgr-1K-3oJ">
+                                <rect key="frame" x="369" y="196" width="39" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pKj-Ds-E0n">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="storePathResetClicked:" target="yid-Ib-4gC" id="oms-UO-ePg"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpR-M0-ClE">
+                                <rect key="frame" x="334" y="196" width="39" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSFolder" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pfX-u1-ZNO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="storePathOpenClicked:" target="yid-Ib-4gC" id="aDH-PH-LIC"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQf-cv-jhE">
-                                <rect key="frame" x="197" y="40" width="59" height="32"/>
+                                <rect key="frame" x="349" y="40" width="59" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s1A-Y0-bfd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -912,19 +957,29 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="okClicked:" target="yid-Ib-4gC" id="I6A-FG-deC"/>
+                                    <action selector="okClicked:" target="yid-Ib-4gC" id="BeG-jk-37B"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kX6-O3-Cq6">
+                                <rect key="frame" x="20" y="93" width="345" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tEB-2c-lRn">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="passField" destination="oiI-cb-b3n" id="ht4-AC-e9s"/>
                         <outlet property="pathField" destination="kX6-O3-Cq6" id="A2E-v1-MXp"/>
+                        <outlet property="storePathField" destination="02W-Cc-LTx" id="8vW-3N-4c3"/>
                     </connections>
                 </viewController>
                 <customObject id="3fB-tr-bCe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381" y="917"/>
+            <point key="canvasLocation" x="457" y="917"/>
         </scene>
     </scenes>
     <resources>

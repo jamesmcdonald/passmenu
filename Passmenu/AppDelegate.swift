@@ -37,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func showPrefs(_ sender: Any?) {
+        NSApp.activate(ignoringOtherApps: true)
         prefsController.window?.makeKeyAndOrderFront(sender)
     }
     
@@ -74,11 +75,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Set default UserDefaults
         let ud = UserDefaults.standard
-        if ud.string(forKey: "passPath") == nil {
-            ud.set("/usr/local/bin/pass", forKey: "passPath")
+        if ud.string(forKey: Constants.prefNamePassBinary) == nil {
+            ud.set(Constants.defaultPassBinary, forKey: Constants.prefNamePassBinary)
         }
-        if ud.string(forKey: "path") == nil {
-            ud.set("/usr/local/bin:/usr/bin:/bin", forKey: "path")
+        if ud.string(forKey: Constants.prefNamePath) == nil {
+            ud.set(Constants.defaultPath, forKey: Constants.prefNamePath)
+        }
+        if ud.string(forKey: Constants.prefNameStorePath) == nil {
+            ud.set(Constants.defaultStorePath, forKey: Constants.prefNameStorePath)
         }
 
         if let button = statusItem.button {

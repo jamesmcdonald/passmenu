@@ -8,14 +8,12 @@
 
 import Cocoa
 
-let defaultPath = "/usr/local/bin:/usr/bin:/bin"
-
+// This view uses UserDefaults directly as its "model"
 class PrefsViewController: NSViewController {
-    var passPath = "/usr/local/bin/pass"
-    var path = "/usr/local/bin:/usr/bin:/bin"
-
     @IBOutlet weak var passField: NSTextField!
     @IBOutlet weak var pathField: NSTextField!
+    @IBOutlet weak var storePathField: NSTextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,22 +21,50 @@ class PrefsViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         let ud = UserDefaults.standard
-        passField.stringValue = ud.string(forKey: "passPath")!
-        pathField.stringValue = ud.string(forKey: "path")!
+        passField.stringValue = ud.string(forKey: Constants.prefNamePassBinary)!
+        pathField.stringValue = ud.string(forKey: Constants.prefNamePath)!
+        storePathField.stringValue = ud.string(forKey: Constants.prefNameStorePath)!
     }
     
     @IBAction func okClicked(_ sender: Any) {
         let ud = UserDefaults.standard
-        ud.set(passField.stringValue, forKey: "passPath")
-        ud.set(pathField.stringValue, forKey: "path")
+        ud.set(passField.stringValue, forKey: Constants.prefNamePassBinary)
+        ud.set(pathField.stringValue, forKey: Constants.prefNamePath)
+        ud.set(storePathField.stringValue, forKey: Constants.prefNameStorePath)
         view.window?.performClose(sender)
     }
+
     @IBAction func cancelClicked(_ sender: Any) {
         view.window?.performClose(sender)
     }
-    @IBAction func passButtonClicked(_ sender: Any) {
+
+    @IBAction func passResetClicked(_ sender: Any) {
+        passField.stringValue = Constants.defaultPassBinary
+    }
+
+    @IBAction func pathResetClicked(_ sender: Any) {
+        pathField.stringValue = Constants.defaultPath
+    }
+    
+    @IBAction func storePathResetClicked(_ sender: Any) {
+        storePathField.stringValue = Constants.defaultStorePath
+    }
+
+    @IBAction func storePathOpenClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
-        openPanel.resolvesAliases = false
+        openPanel.canChooseFiles = false
+        openPanel.canChooseDirectories = true
+        openPanel.showsHiddenFiles = true
+        openPanel.directoryURL = URL(fileURLWithPath: storePathField.stringValue)
+        let r = openPanel.runModal()
+        if r == NSApplication.ModalResponse.OK {
+            storePathField.stringValue = (openPanel.url?.path)!
+        }
+    }
+
+    @IBAction func passOpenClicked(_ sender: Any) {
+        let openPanel = NSOpenPanel()
+        openPanel.showsHiddenFiles = true
         openPanel.directoryURL = URL(fileURLWithPath: passField.stringValue)
         let r = openPanel.runModal()
         if r == NSApplication.ModalResponse.OK {

@@ -8,21 +8,21 @@
 
 import Cocoa
 
-let defaultPassBinary = "/usr/local/bin/pass"
-let defaultStorePath = NSHomeDirectory() + "/.password-store"
-
 enum GetPassError: Error {
     case NoBinary(path: String)
     case ExecFailed(code: Int32, stderr: String)
     case ParseFailed
 }
+
 class PassFacade: NSObject {
     var storePath: String
     var passBinary: String
+    var path: String
 
-    init(withStorePath path: String = defaultStorePath, withPassBinary binary: String = defaultPassBinary) {
-        storePath = path
-        passBinary = binary
+    init(withStorePath storePath: String = Constants.defaultStorePath, withPassBinary passBinary: String = Constants.defaultPassBinary, withPath path: String = Constants.defaultPath) {
+        self.storePath = storePath
+        self.passBinary = passBinary
+        self.path = path
     }
 
     func search(_ s: String) -> [String] {
@@ -59,7 +59,7 @@ class PassFacade: NSObject {
         task.standardError = errpipe
         // Set up environment explicitly - the default PATH doesn't work with Homebrew
         task.environment = [
-            "PATH":               "/usr/local/bin:/usr/bin:/bin",
+            "PATH":               path,
             "HOME":               NSHomeDirectory(),
             "PASSWORD_STORE_DIR": storePath,
         ]
