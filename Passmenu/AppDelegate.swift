@@ -14,21 +14,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     var searchController: NSWindowController
+    var prefsController: NSWindowController
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let hotkey = HotKey(key: .p, modifiers: [.command, .option])
     
     override init() {
-        // Load the popup window
         let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
         let identifier = NSStoryboard.SceneIdentifier(rawValue: "WindowController")
-        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? NSWindowController else {
+        guard let searchController = storyboard.instantiateController(withIdentifier: identifier) as? NSWindowController else {
             fatalError("Can't seem to find WindowController in Storyboard")
         }
-        self.searchController = viewcontroller
+        self.searchController = searchController
+        
+        let prefsid = NSStoryboard.SceneIdentifier(rawValue: "PrefsWindowController")
+        guard let prefsController = storyboard.instantiateController(withIdentifier: prefsid) as? NSWindowController else {
+            fatalError("Can't seem to find PrefsWindowController in Storyboard")
+        }
+        self.prefsController = prefsController
+        
         super.init()
     }
 
+    @objc func showPrefs(_ sender: Any?) {
+        prefsController.window?.makeKeyAndOrderFront(sender)
+    }
+    
     @objc func toggleSearch(_ sender: Any?) {
         if (searchController.window?.isVisible)! {
             hideSearch(sender)
@@ -52,6 +63,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let lookupitem = NSMenuItem(title: "Look up pass", action: #selector(AppDelegate.toggleSearch(_:)), keyEquivalent: "")
         menu.addItem(lookupitem)
+        let prefsitem = NSMenuItem(title: "Preferences...", action: #selector(AppDelegate.showPrefs(_:)), keyEquivalent: ",")
+        menu.addItem(prefsitem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Passmenu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         

@@ -25,6 +25,8 @@ class ViewController: NSViewController {
         self.resultTable.dataSource = self
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            guard let locWindow = self.view.window,
+                NSApplication.shared.keyWindow === locWindow else { return event }
             switch Int(event.keyCode) {
             case kVK_Escape:
                 (NSApp.delegate! as! AppDelegate).hideSearch(nil)
