@@ -9,11 +9,16 @@
 import Cocoa
 import Carbon.HIToolbox
 
+let ud = UserDefaults.standard
 let clearInterval = 45
+
+// Not really content with this arrangement, but it works for now
+func configurePass() -> PassFacade {
+    return PassFacade(withStorePath: ud.string(forKey: Constants.prefNameStorePath)!, withPassBinary: ud.string(forKey: Constants.prefNamePassBinary)!, withPath: ud.string(forKey: Constants.prefNamePath)!)
+}
 
 class ViewController: NSViewController {
     var timer:Timer? = nil
-    let pass = PassFacade()
     var results: [String] = []
 
     @IBOutlet weak var passwordField: NSTextField!
@@ -25,6 +30,8 @@ class ViewController: NSViewController {
         self.resultTable.dataSource = self
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            guard let locWindow = self.view.window,
+                NSApplication.shared.keyWindow === locWindow else { return event }
             switch Int(event.keyCode) {
             case kVK_Escape:
                 (NSApp.delegate! as! AppDelegate).hideSearch(nil)
@@ -57,7 +64,6 @@ class ViewController: NSViewController {
         self.view.window?.styleMask.remove(.fullScreen)
         self.view.window?.styleMask.remove(.miniaturizable)
         self.view.window?.styleMask.remove(.resizable)
-
     }
     
     override func viewDidAppear() {
@@ -74,6 +80,7 @@ class ViewController: NSViewController {
     }
 
     override func controlTextDidChange(_ obj: Notification) {
+        let pass = configurePass()
         let tf = obj.object as! NSTextField
         results = pass.search(tf.stringValue)
         resultTable.reloadData()
@@ -104,6 +111,7 @@ class ViewController: NSViewController {
         
         let entry = results[sender.selectedRow]
         do {
+            let pass = configurePass()
             let pw = try pass.getPass(entry)
         
             // Cancel pending timer

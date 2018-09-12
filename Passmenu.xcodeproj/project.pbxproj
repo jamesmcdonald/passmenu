@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AB9CE1C2145929C00E6EF8D /* PrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9CE1B2145929C00E6EF8D /* PrefsViewController.swift */; };
+		1AB9CE1E2148333700E6EF8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9CE1D2148333700E6EF8D /* Constants.swift */; };
 		1AC9964F213D1A7D0003BEA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9964E213D1A7D0003BEA6 /* AppDelegate.swift */; };
 		1AC99651213D1A7D0003BEA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC99650213D1A7D0003BEA6 /* ViewController.swift */; };
 		1AC99653213D1A7D0003BEA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC99652213D1A7D0003BEA6 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		1A2037022141812000B87E98 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1AB9CE1B2145929C00E6EF8D /* PrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsViewController.swift; sourceTree = "<group>"; };
+		1AB9CE1D2148333700E6EF8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1AC9964B213D1A7D0003BEA6 /* Passmenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passmenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC9964E213D1A7D0003BEA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AC99650213D1A7D0003BEA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 				1AC99654213D1A7D0003BEA6 /* Main.storyboard */,
 				1AC99657213D1A7D0003BEA6 /* Info.plist */,
 				1AC99658213D1A7D0003BEA6 /* Passmenu.entitlements */,
+				1AB9CE1B2145929C00E6EF8D /* PrefsViewController.swift */,
+				1AB9CE1D2148333700E6EF8D /* Constants.swift */,
 			);
 			path = Passmenu;
 			sourceTree = "<group>";
@@ -166,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB9CE1E2148333700E6EF8D /* Constants.swift in Sources */,
 				1AC99651213D1A7D0003BEA6 /* ViewController.swift in Sources */,
 				1AC99661213D33F30003BEA6 /* PassFacade.swift in Sources */,
 				1AC9964F213D1A7D0003BEA6 /* AppDelegate.swift in Sources */,
+				1AB9CE1C2145929C00E6EF8D /* PrefsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
