@@ -64,10 +64,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let lookupitem = NSMenuItem(title: "Look up pass", action: #selector(AppDelegate.toggleSearch(_:)), keyEquivalent: "")
         menu.addItem(lookupitem)
-        let prefsitem = NSMenuItem(title: "Preferences...", action: #selector(AppDelegate.showPrefs(_:)), keyEquivalent: ",")
+        let prefsitem = NSMenuItem(title: "Preferences...", action: #selector(AppDelegate.showPrefs(_:)), keyEquivalent: "")
         menu.addItem(prefsitem)
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit Passmenu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit Passmenu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         
         statusItem.menu = menu
     }
