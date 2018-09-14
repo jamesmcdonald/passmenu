@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func hideSearch(_ sender: Any?) {
-        NSApp.hide(sender)
+        searchController.window?.close()
     }
 
     func constructMenu() {

@@ -723,7 +723,7 @@
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA5-1Z-eXp">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="209"/>
-                                <clipView key="contentView" id="147-FK-Kb2">
+                                <clipView key="contentView" drawsBackground="NO" id="147-FK-Kb2">
                                     <rect key="frame" x="1" y="1" width="478" height="207"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -774,12 +774,13 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="74v-hP-YaO">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="74v-hP-YaO">
                                     <rect key="frame" x="1" y="118" width="238" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="wCq-2V-S8t">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="wCq-2V-S8t">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -983,7 +984,7 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="NSFolder" width="32" height="32"/>
+        <image name="NSFolder" width="128" height="128"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
     </resources>
 </document>
