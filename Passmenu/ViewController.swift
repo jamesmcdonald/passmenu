@@ -78,16 +78,6 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-    override func controlTextDidChange(_ obj: Notification) {
-        let pass = configurePass()
-        let tf = obj.object as! NSTextField
-        results = pass.search(tf.stringValue)
-        resultTable.reloadData()
-        if results.count > 0 {
-            resultTable.selectRowIndexes([0], byExtendingSelection: false)
-        }
-    }
     
     func notify(title: String, message: String) {
         let notification = NSUserNotification();
@@ -152,4 +142,16 @@ extension ViewController : NSTableViewDataSource, NSTableViewDelegate {
         return result
     }
     
+}
+
+extension ViewController: NSControlTextEditingDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        let pass = configurePass()
+        let tf = obj.object as! NSTextField
+        results = pass.search(tf.stringValue)
+        resultTable.reloadData()
+        if results.count > 0 {
+            resultTable.selectRowIndexes([0], byExtendingSelection: false)
+        }
+    }
 }

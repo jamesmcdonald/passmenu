@@ -20,14 +20,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let hotkey = HotKey(key: .p, modifiers: [.command, .option])
     
     override init() {
-        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-        let identifier = NSStoryboard.SceneIdentifier(rawValue: "WindowController")
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        let identifier = NSStoryboard.SceneIdentifier("WindowController")
         guard let searchController = storyboard.instantiateController(withIdentifier: identifier) as? NSWindowController else {
             fatalError("Can't seem to find WindowController in Storyboard")
         }
         self.searchController = searchController
         
-        let prefsid = NSStoryboard.SceneIdentifier(rawValue: "PrefsWindowController")
+        let prefsid = NSStoryboard.SceneIdentifier("PrefsWindowController")
         guard let prefsController = storyboard.instantiateController(withIdentifier: prefsid) as? NSWindowController else {
             fatalError("Can't seem to find PrefsWindowController in Storyboard")
         }

@@ -88,7 +88,7 @@
 				1AC99647213D1A7D0003BEA6 /* Sources */,
 				1AC99648213D1A7D0003BEA6 /* Frameworks */,
 				1AC99649213D1A7D0003BEA6 /* Resources */,
-				1A49BB3821417D15006D523A /* ShellScript */,
+				1A49BB3821417D15006D523A /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -111,6 +111,7 @@
 				TargetAttributes = {
 					1AC9964A213D1A7D0003BEA6 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = "";
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -150,7 +151,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A49BB3821417D15006D523A /* ShellScript */ = {
+		1A49BB3821417D15006D523A /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,12 +159,13 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/HotKey.framework",
 			);
+			name = "Run Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HotKey.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "PATH=$PATH:/usr/local/bin:/opt/homebrew/bin\ncarthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -311,9 +313,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 89PR9JS5JX;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -325,7 +328,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamesmcdonald.Passmenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -333,9 +337,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 89PR9JS5JX;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -347,7 +352,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamesmcdonald.Passmenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
