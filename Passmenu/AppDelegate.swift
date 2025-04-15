@@ -8,8 +8,9 @@
 
 import Cocoa
 import HotKey
+import UserNotifications
 
-@NSApplicationMain
+@main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var searchController: NSWindowController
     var prefsController: NSWindowController
@@ -34,12 +35,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
     }
 
-    @objc func showPrefs(_ sender: Any?) {
+    @MainActor @objc func showPrefs(_ sender: Any?) {
         NSApp.activate(ignoringOtherApps: true)
         prefsController.window?.makeKeyAndOrderFront(sender)
     }
     
-    @objc func toggleSearch(_ sender: Any?) {
+    @MainActor @objc func toggleSearch(_ sender: Any?) {
         if (searchController.window?.isVisible)! {
             hideSearch(sender)
         } else {
@@ -47,13 +48,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func showSearch(_ sender: Any?) {
+    @MainActor func showSearch(_ sender: Any?) {
         NSApp.activate(ignoringOtherApps: true)
         searchController.window?.center()
         searchController.window?.makeKeyAndOrderFront(nil)
     }
     
-    func hideSearch(_ sender: Any?) {
+    @MainActor func hideSearch(_ sender: Any?) {
         searchController.window?.close()
     }
 
@@ -92,6 +93,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hotkey.keyUpHandler = {
             self.toggleSearch(nil)
         }
+        
+        Task.detached {
+            do {
+                let granted = try await UNUserNotificationCenter.current()
+                    .requestAuthorization(options: [.alert, .badge, .sound])
+
+                await MainActor.run {
+                    print("Notifications permission granted: \(granted)")
+                }
+            } catch {
+                await MainActor.run {
+                    print("Request authorization failed: \(error)")
+                }
+            }
+        }
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

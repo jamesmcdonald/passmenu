@@ -10,11 +10,11 @@ import Cocoa
 import Carbon.HIToolbox
 import UserNotifications
 
-let ud = UserDefaults.standard
+@MainActor let ud = UserDefaults.standard
 let clearInterval = 45
 
 // Not really content with this arrangement, but it works for now
-func configurePass() -> PassFacade {
+@MainActor func configurePass() -> PassFacade {
     return PassFacade(withStorePath: ud.string(forKey: Constants.prefNameStorePath)!, withPassBinary: ud.string(forKey: Constants.prefNamePassBinary)!, withPath: ud.string(forKey: Constants.prefNamePath)!)
 }
 
@@ -29,14 +29,6 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         self.resultTable.delegate = self
         self.resultTable.dataSource = self
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if let error = error {
-                print("Request authorization failed: \(error)")
-            } else {
-                print("Notifications permission granted: \(granted)")
-            }
-        }
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             guard let locWindow = self.view.window,
@@ -94,8 +86,9 @@ class ViewController: NSViewController {
         content.body = message
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request, withCompletionHandler: {err in print(err ?? "ok")})
+        Task.detached {
+            try? await UNUserNotificationCenter.current().add(request)
+        }
     }
     
     func passNotify(_ pass: String) {
@@ -124,7 +117,9 @@ class ViewController: NSViewController {
             pasteboard.clearContents()
             pasteboard.setString(pw, forType: .string)
             timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(clearInterval), repeats: false)  { (timer) in
-                pasteboard.clearContents()
+                DispatchQueue.main.async {
+                    NSPasteboard.general.clearContents()
+                }
             }
             passNotify(results[sender.selectedRow])
         } catch GetPassError.ExecFailed(let code, let error) {
