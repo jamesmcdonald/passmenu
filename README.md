@@ -9,15 +9,8 @@ basic, but it works, so someone else may find it useful.
 
 ## Building
 
-You will need Xcode and [Carthage](https://github.com/Carthage/Carthage), which
-you can install with Homebrew:
-
-```
-brew install carthage
-```
-
-Clone the repository and run `carthage update` to install the HotKey framework.
-You should now be able to just build in Xcode.
+You should be able to just clone the repo and build in Xcode. HotKey will be
+fetched from GitHub.
 
 ## Running
 
