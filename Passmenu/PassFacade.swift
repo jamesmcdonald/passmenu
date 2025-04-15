@@ -53,7 +53,7 @@ class PassFacade: NSObject {
             throw GetPassError.NoBinary(path: passBinary)
         }
 
-        task.launchPath = passBinary
+        task.executableURL = URL(fileURLWithPath: passBinary)
         task.arguments = [p]
         task.standardOutput = outpipe
         task.standardError = errpipe
@@ -64,8 +64,7 @@ class PassFacade: NSObject {
             "PASSWORD_STORE_DIR": storePath,
         ]
 
-        // This can throw an objc NSInvalidArgumentException if it fails, which we can't catch
-        task.launch()
+        try task.run()
         let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
         task.waitUntilExit()
 

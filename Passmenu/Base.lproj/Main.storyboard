@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -751,7 +751,7 @@
                                                             <rect key="frame" x="1" y="1" width="209" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-bB-VkS">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-bB-VkS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="209" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="ORj-zE-2Kf"/>
@@ -839,7 +839,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="422" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cln-im-OnW">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cln-im-OnW">
                                 <rect key="frame" x="18" y="178" width="161" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="3hM-5m-21q"/>
@@ -863,7 +863,7 @@ Gw
                                     <action selector="cancelClicked:" target="yid-Ib-4gC" id="jRP-qA-Q8m"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oiI-cb-b3n">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oiI-cb-b3n">
                                 <rect key="frame" x="20" y="148" width="312" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="312" id="i1c-LZ-xjR"/>
@@ -874,7 +874,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZZo-TC-VkF">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZZo-TC-VkF">
                                 <rect key="frame" x="18" y="123" width="81" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="Jhe-XQ-Hh3"/>
@@ -915,7 +915,7 @@ Gw
                                     </connections>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-WW-7cA">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-WW-7cA">
                                 <rect key="frame" x="18" y="233" width="172" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="hTf-xZ-pOV"/>
@@ -926,7 +926,7 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="02W-Cc-LTx">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="02W-Cc-LTx">
                                 <rect key="frame" x="20" y="204" width="312" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="8dL-x7-34c">
                                     <font key="font" size="13" name="Monaco"/>
@@ -967,7 +967,7 @@ DQ
                                     <action selector="okClicked:" target="yid-Ib-4gC" id="BeG-jk-37B"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kX6-O3-Cq6">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kX6-O3-Cq6">
                                 <rect key="frame" x="20" y="93" width="345" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="345" id="Hfs-by-COe"/>

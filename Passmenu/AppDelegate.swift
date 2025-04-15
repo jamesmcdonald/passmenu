@@ -11,8 +11,6 @@ import HotKey
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    
     var searchController: NSWindowController
     var prefsController: NSWindowController
     
@@ -86,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("StatusBarButtonImage"))
+            button.image = NSImage(systemSymbolName: "key", accessibilityDescription: "passmenu")
         }
         
         constructMenu()
@@ -99,7 +97,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
-

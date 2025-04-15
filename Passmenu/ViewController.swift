@@ -8,6 +8,7 @@
 
 import Cocoa
 import Carbon.HIToolbox
+import UserNotifications
 
 let ud = UserDefaults.standard
 let clearInterval = 45
@@ -28,6 +29,14 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         self.resultTable.delegate = self
         self.resultTable.dataSource = self
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if let error = error {
+                print("Request authorization failed: \(error)")
+            } else {
+                print("Notifications permission granted: \(granted)")
+            }
+        }
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             guard let locWindow = self.view.window,
@@ -79,16 +88,19 @@ class ViewController: NSViewController {
         }
     }
     
-    func notify(title: String, message: String) {
-        let notification = NSUserNotification();
-        notification.title = title
-        notification.informativeText = message
-        NSUserNotificationCenter.default.deliver(notification)
+    func notify(title: String, message: String)  {
+        let content = UNMutableNotificationContent();
+        content.title = title
+        content.body = message
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request, withCompletionHandler: {err in print(err ?? "ok")})
     }
     
     func passNotify(_ pass: String) {
         notify(title: "Password Copied",
-               message: "Password entry \"\(pass)\" copied to clipboard. It will be cleared in \(clearInterval) seconds.")
+                         message: "Password entry \"\(pass)\" copied to clipboard. It will be cleared in \(clearInterval) seconds.")
     }
 
     @IBAction func doubleClick(_ sender: NSTableView) {
@@ -117,16 +129,16 @@ class ViewController: NSViewController {
             passNotify(results[sender.selectedRow])
         } catch GetPassError.ExecFailed(let code, let error) {
             notify(title: "ERROR: Failed to retrieve password",
-                   message: "Error response: \"\(error)\", Error code: \(code)")
+                        message: "Error response: \"\(error)\", Error code: \(code)")
         } catch GetPassError.NoBinary(let path) {
             notify(title: "ERROR: Can't find pass",
-                   message: "Can't find an executable at configured path \"\(path)\"")
+                        message: "Can't find an executable at configured path \"\(path)\"")
         } catch GetPassError.ParseFailed {
             notify(title: "ERROR: Couldn't parse response from pass",
-                   message: "I ran pass OK, but what it sent me didn't look like UTF-8")
+                              message: "I ran pass OK, but what it sent me didn't look like UTF-8")
         } catch {
             notify(title: "Unexpected Error",
-                   message: "Something crazy and unanticipated happened. Well done!")
+                              message: "Something crazy and unanticipated happened. Well done!")
         }
     }
 }
