@@ -1,0 +1,42 @@
+# Build products
+build/
+DerivedData/
+*.xcuserstate
+
+# Xcode user settings
+*.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Personal schemes (optional – keep shared ones only)
+*.xcodeproj/xcshareddata/xcschemes/*.xcscheme
+*.xcodeproj/xcuserdata/
+
+# User-specific settings and state
+*.xcuserdatad/
+
+# SwiftPM
+.build/
+Package.resolved
+
+# CocoaPods (if used)
+Pods/
+Podfile.lock
+
+# Carthage (if used)
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Archives
+*.xcarchive
+
+# Output / Debugging
+*.dSYM
+*.ipa
+*.app
+*.log
+
